@@ -346,6 +346,8 @@ a {
 .bottle {
   position: relative;
   width: min(240px, 60%);
+  max-height: 420px;
+  object-fit: contain;
   filter: drop-shadow(0 24px 28px rgba(13, 53, 32, 0.45));
   animation: bottle-float 6s ease-in-out infinite;
 }
