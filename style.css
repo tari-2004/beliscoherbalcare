@@ -1,0 +1,839 @@
+/* =========================================================
+   Belisco Herbal Care — style.css
+   Palette drawn from the brand flyer:
+   deep forest green · warm cream · tonic amber · gold · one red
+   ========================================================= */
+
+:root {
+  --green-900: #0d3520;
+  --green-800: #14522f;
+  --green-700: #1e6b3c;
+  --green-500: #3e9152;
+  --green-200: #bfe0c2;
+  --green-100: #e9f4e6;
+  --cream: #fbf8ef;
+  --cream-deep: #f4efe0;
+  --amber: #e7a128;
+  --amber-deep: #c9820f;
+  --tonic: #b4530a;
+  --red: #a32020;
+  --ink: #22301f;
+  --ink-soft: #4c5c48;
+
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Outfit", system-ui, sans-serif;
+
+  --radius: 18px;
+  --shadow: 0 18px 40px -18px rgba(13, 53, 32, 0.35);
+  --container: 1120px;
+}
+
+/* ---------- Reset & base ---------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: var(--ink);
+  background: var(--cream);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+.container {
+  width: min(var(--container), 92%);
+  margin-inline: auto;
+}
+
+:focus-visible {
+  outline: 3px solid var(--amber);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---------- Shared type ---------- */
+
+.eyebrow {
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--green-700);
+  margin-bottom: 0.9rem;
+}
+
+.eyebrow.light {
+  color: var(--green-200);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.7rem, 3.4vw, 2.5rem);
+  line-height: 1.15;
+  color: var(--green-900);
+  margin-bottom: 1rem;
+  max-width: 22ch;
+}
+
+.section-title.light {
+  color: var(--cream);
+}
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  padding: 0.85rem 1.7rem;
+  border-radius: 999px;
+  transition: transform 0.18s ease, box-shadow 0.18s ease,
+    background-color 0.18s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-gold {
+  background: var(--amber);
+  color: var(--green-900);
+  box-shadow: 0 10px 22px -10px rgba(201, 130, 15, 0.7);
+}
+
+.btn-gold:hover {
+  background: var(--amber-deep);
+  color: var(--cream);
+}
+
+.btn-ghost {
+  border: 2px solid var(--green-700);
+  color: var(--green-800);
+}
+
+.btn-ghost:hover {
+  background: var(--green-100);
+}
+
+.btn-small {
+  padding: 0.5rem 1.2rem;
+  font-size: 0.92rem;
+}
+
+.btn-big {
+  padding: 1.05rem 2.2rem;
+  font-size: 1.08rem;
+}
+
+.btn-big svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* ---------- Header ---------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--cream) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--cream-deep);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 0.8rem;
+  position: relative;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: var(--green-800);
+}
+
+.brand-mark {
+  width: 38px;
+  height: 38px;
+  flex: none;
+}
+
+.brand-text {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  line-height: 1.05;
+  letter-spacing: 0.02em;
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-text em {
+  font-style: normal;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.62rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+.site-nav a:not(.btn) {
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  transition: color 0.15s ease;
+}
+
+.site-nav a:not(.btn):hover {
+  color: var(--green-700);
+}
+
+/* CSS-only mobile nav */
+.nav-toggle {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.nav-burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 6px;
+}
+
+.nav-burger span {
+  width: 24px;
+  height: 2.5px;
+  border-radius: 2px;
+  background: var(--green-800);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(160deg, var(--cream) 55%, var(--green-100));
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 2.5rem;
+  padding-block: 4.5rem 7rem;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.4rem, 5.2vw, 4rem);
+  line-height: 1.06;
+  color: var(--green-900);
+  margin-bottom: 1.3rem;
+  max-width: 15ch;
+}
+
+.hero-title em {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--green-700);
+}
+
+.accent-red {
+  color: var(--red);
+}
+
+.hero-lead {
+  font-size: 1.12rem;
+  color: var(--ink-soft);
+  max-width: 46ch;
+  margin-bottom: 2rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-bottom: 2rem;
+}
+
+.hero-badges {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.hero-badges li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--green-800);
+}
+
+.hero-badges svg {
+  width: 20px;
+  height: 20px;
+  flex: none;
+}
+
+/* Hero visual */
+
+.hero-visual {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 480px;
+}
+
+.blob {
+  position: absolute;
+  inset: 8% 6% 4%;
+  background: radial-gradient(
+    circle at 30% 25%,
+    var(--green-500),
+    var(--green-800) 70%
+  );
+  border-radius: 48% 52% 55% 45% / 50% 44% 56% 50%;
+  box-shadow: var(--shadow);
+}
+
+.bottle {
+  position: relative;
+  width: min(240px, 60%);
+  filter: drop-shadow(0 24px 28px rgba(13, 53, 32, 0.45));
+  animation: bottle-float 6s ease-in-out infinite;
+}
+
+.label-brand {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 22px;
+  fill: var(--green-800);
+  letter-spacing: 1px;
+}
+
+.label-sub {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 9px;
+  letter-spacing: 4px;
+  fill: var(--ink-soft);
+}
+
+.label-drink {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  fill: var(--cream);
+}
+
+.label-note {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  fill: var(--tonic);
+}
+
+.leaf {
+  position: absolute;
+  color: var(--green-500);
+  opacity: 0.55;
+  width: 54px;
+}
+
+.leaf-a {
+  top: 4%;
+  right: 8%;
+  transform: rotate(30deg);
+  animation: leaf-sway 7s ease-in-out infinite;
+}
+
+.leaf-b {
+  bottom: 10%;
+  left: 4%;
+  width: 40px;
+  transform: rotate(-115deg);
+  animation: leaf-sway 8s ease-in-out infinite reverse;
+}
+
+.ripple {
+  position: absolute;
+  bottom: 2%;
+  width: 78%;
+  opacity: 0.9;
+}
+
+.wave {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 70px;
+}
+
+@keyframes bottle-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes leaf-sway {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 6px -8px;
+  }
+}
+
+/* ---------- Benefits ---------- */
+
+.benefits {
+  background: var(--green-900);
+  color: var(--cream);
+  padding-block: 4.5rem 5rem;
+}
+
+.benefit-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.2rem;
+  margin-top: 2.4rem;
+}
+
+.benefit-card {
+  background: color-mix(in srgb, var(--green-800) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--green-500) 35%, transparent);
+  border-radius: var(--radius);
+  padding: 1.6rem 1.4rem;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.benefit-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--amber);
+}
+
+.benefit-card svg {
+  width: 42px;
+  height: 42px;
+  color: var(--amber);
+  margin-bottom: 1rem;
+}
+
+.benefit-card h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.15rem;
+  margin-bottom: 0.5rem;
+}
+
+.benefit-card p {
+  font-size: 0.94rem;
+  color: var(--green-200);
+}
+
+/* ---------- What's inside ---------- */
+
+.inside {
+  padding-block: 5rem;
+}
+
+.inside-grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.mortar {
+  width: min(340px, 85%);
+  margin-inline: auto;
+}
+
+.inside-copy p {
+  color: var(--ink-soft);
+  max-width: 52ch;
+  margin-bottom: 1.4rem;
+}
+
+.check-list {
+  list-style: none;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.check-list li {
+  position: relative;
+  padding-left: 1.9rem;
+  font-weight: 500;
+}
+
+.check-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 1.05rem;
+  height: 1.05rem;
+  border-radius: 50%;
+  background: var(--green-700);
+  -webkit-mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="black" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" d="M4 12.5l5 5L20 6.5"/></svg>')
+    center / contain no-repeat;
+  mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="black" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" d="M4 12.5l5 5L20 6.5"/></svg>')
+    center / contain no-repeat;
+}
+
+/* ---------- Daily ritual ---------- */
+
+.ritual {
+  background: var(--cream-deep);
+  padding-block: 4.5rem 4rem;
+}
+
+.ritual-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.4rem;
+  margin-top: 2.2rem;
+}
+
+.ritual-step {
+  background: var(--cream);
+  border-radius: var(--radius);
+  padding: 1.8rem 1.5rem;
+  box-shadow: 0 10px 26px -18px rgba(13, 53, 32, 0.4);
+}
+
+.step-mark {
+  display: inline-grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--green-100);
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.ritual-step h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.18rem;
+  color: var(--green-900);
+  margin-bottom: 0.4rem;
+}
+
+.ritual-step p {
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+
+.ritual-note {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  font-style: italic;
+  max-width: 60ch;
+}
+
+/* ---------- Testimonials ---------- */
+
+.voices {
+  background: var(--green-800);
+  padding-block: 4.5rem 5rem;
+}
+
+.voice-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.4rem;
+  margin-top: 2.2rem;
+}
+
+.voice-card {
+  background: var(--cream);
+  border-radius: var(--radius);
+  padding: 1.8rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.voice-card p {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: var(--green-900);
+}
+
+.voice-card footer {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+/* ---------- Order CTA ---------- */
+
+.order {
+  padding-block: 5rem;
+}
+
+.order-inner {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 2.5rem;
+  align-items: center;
+  background: linear-gradient(140deg, var(--green-100), var(--cream));
+  border: 1px solid var(--green-200);
+  border-radius: calc(var(--radius) * 1.6);
+  padding: 3rem clamp(1.5rem, 4vw, 3.5rem);
+}
+
+.order-lead {
+  color: var(--ink-soft);
+  max-width: 46ch;
+}
+
+.order-actions {
+  display: grid;
+  justify-items: center;
+  gap: 0.8rem;
+}
+
+.order-alt {
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+}
+
+.order-alt a {
+  font-weight: 600;
+  color: var(--green-800);
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  background: var(--green-900);
+  color: var(--cream);
+  padding-block: 3rem 2.4rem;
+}
+
+.footer-inner {
+  display: grid;
+  justify-items: center;
+  gap: 0.8rem;
+  text-align: center;
+}
+
+.brand.light {
+  color: var(--cream);
+}
+
+.brand.light .brand-text em {
+  color: var(--green-200);
+}
+
+.footer-tag {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--green-200);
+}
+
+.footer-fine {
+  font-size: 0.8rem;
+  color: color-mix(in srgb, var(--green-200) 70%, transparent);
+  max-width: 52ch;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 940px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    padding-block: 3.5rem 6rem;
+    text-align: center;
+  }
+
+  .hero-title,
+  .hero-lead {
+    margin-inline: auto;
+  }
+
+  .hero-actions,
+  .hero-badges {
+    justify-content: center;
+  }
+
+  .hero-visual {
+    min-height: 420px;
+  }
+
+  .benefit-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .inside-grid,
+  .order-inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .inside-copy p,
+  .order-lead,
+  .section-title {
+    margin-inline: auto;
+  }
+
+  .check-list {
+    justify-items: start;
+    width: fit-content;
+    margin-inline: auto;
+    text-align: left;
+  }
+
+  .ritual-grid,
+  .voice-grid {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+    margin-inline: auto;
+  }
+
+  .ritual-note {
+    margin-inline: auto;
+    text-align: center;
+  }
+}
+
+@media (max-width: 720px) {
+  .nav-burger {
+    display: flex;
+  }
+
+  .site-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: var(--cream);
+    border-bottom: 1px solid var(--cream-deep);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease;
+  }
+
+  .site-nav a {
+    padding: 0.9rem 4%;
+  }
+
+  .site-nav a.btn {
+    margin: 0.6rem 4% 1rem;
+    justify-content: center;
+  }
+
+  .nav-toggle:checked ~ .site-nav {
+    max-height: 340px;
+  }
+
+  .nav-toggle:checked ~ .nav-burger span:nth-child(1) {
+    transform: translateY(7.5px) rotate(45deg);
+  }
+
+  .nav-toggle:checked ~ .nav-burger span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav-toggle:checked ~ .nav-burger span:nth-child(3) {
+    transform: translateY(-7.5px) rotate(-45deg);
+  }
+
+  .benefit-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-visual {
+    min-height: 380px;
+  }
+
+  .bottle {
+    width: min(200px, 55%);
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .bottle,
+  .leaf-a,
+  .leaf-b {
+    animation: none;
+  }
+
+  .btn,
+  .benefit-card {
+    transition: none;
+  }
+}
