@@ -331,22 +331,22 @@ a {
   min-height: 480px;
 }
 
-.blob {
-  position: absolute;
-  inset: 8% 6% 4%;
-  background: radial-gradient(
-    circle at 30% 25%,
-    var(--green-500),
-    var(--green-800) 70%
-  );
-  border-radius: 48% 52% 55% 45% / 50% 44% 56% 50%;
-  box-shadow: var(--shadow);
+.hero-image-card {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: min(420px, 90%);
+  padding: 1.4rem;
+  background: linear-gradient(145deg, var(--cream), var(--cream-deep));
+  border: 1px solid rgba(20, 82, 47, 0.16);
+  border-radius: 2rem;
+  box-shadow: 0 24px 60px -28px rgba(13, 53, 32, 0.35);
 }
 
 .bottle {
   position: relative;
-  width: min(240px, 60%);
-  max-height: 420px;
+  width: min(310px, 90%);
+  max-height: 460px;
   object-fit: contain;
   filter: drop-shadow(0 24px 28px rgba(13, 53, 32, 0.45));
   animation: bottle-float 6s ease-in-out infinite;
@@ -382,35 +382,6 @@ a {
   font-size: 9px;
   letter-spacing: 1.5px;
   fill: var(--tonic);
-}
-
-.leaf {
-  position: absolute;
-  color: var(--green-500);
-  opacity: 0.55;
-  width: 54px;
-}
-
-.leaf-a {
-  top: 4%;
-  right: 8%;
-  transform: rotate(30deg);
-  animation: leaf-sway 7s ease-in-out infinite;
-}
-
-.leaf-b {
-  bottom: 10%;
-  left: 4%;
-  width: 40px;
-  transform: rotate(-115deg);
-  animation: leaf-sway 8s ease-in-out infinite reverse;
-}
-
-.ripple {
-  position: absolute;
-  bottom: 2%;
-  width: 78%;
-  opacity: 0.9;
 }
 
 .wave {
